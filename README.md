@@ -76,7 +76,61 @@ This ould start your MCP server on a local port (commonly 3000 or 4000).
 4. Add MCP Server to Windsurf/Cascade
 Go to Windsurf Settings → Cascade → Add Server.
 Enter the address, e.g. http://localhost:3000
-Click Refre.
-
+Click Refresh.
 
 Copy the conten in the vercelv0mcp.json with your own values for the placeholders to your mcp_config.json file usually localed in .condium/windsurf/mcp_config.json and is located in different folders in other IDE's.  The MCP configuration here works for all IDEs when placed in the right directory/file.  
+```
+```
+### What the mcp_config.json file does for Cascade/Windsurf:
+
+1. Why You Don’t See an Address Field
+When you click "Add Custom Server" in Cascade settings, it takes you to this config file because Cascade expects you to define custom MCP servers here. However, the "mcpServers" section currently only specifies how to start servers (the command and args), not their addresses.
+
+To make servers available to Cascade, you need to specify their addresses (URLs) so the IDE knows how to connect to them.
+
+2. How to Fix the File
+Add an "address" (or "url") field to each server under "mcpServers". For example:
+```json
+"mcpServers": {
+  "puppeteer": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-puppeteer"
+    ],
+    "address": "http://localhost:4001"
+  },
+  "figma": {
+    "command": "npx",
+    "args": [
+      "figma-mcp"
+    ],
+    "env": {
+      "FIGMA_API_KEY": "kQb1kSFNQtXkWnlQ7AVVpQH5BqVxwP"
+    },
+    "address": "http://localhost:4002"
+  }
+}
+```
+
+Replace the ports (4001, 4002) with the actual ports your MCP servers run on.
+
+3. What This File Does
+This config file is a central control panel for your Cascade/Windsurf + MCP setup. Here’s what you can do with it:
+
+Project Metadata: Name, description, and documentation for your project.
+Providers: Set up deployment (Vercel), AI (v0.dev), and multiple database types (Postgres, MySQL, SQLite, MongoDB).
+Features: Toggle auto-deploy, AI code generation, database provisioning, secrets management, and multi-environment support.
+Secrets: Store API keys, DB URLs, and other sensitive data.
+Environments: Define different settings for development, staging, and production (env vars and secrets).
+Instructions: Human-readable steps for how Cascade/Windsurf should orchestrate your workflow.
+mcpServers: Define custom MCP servers (like Puppeteer, Figma) with:
+How to start them (command, args, env)
+Where to connect (address/url)
+4. What You Can Do With It
+Add/Remove Custom MCP Servers: Integrate tools like Puppeteer (for browser automation), Figma (for design), etc.
+Connect Cascade to Local/Remote MCPs: By specifying the address, Cascade can communicate with these servers.
+Manage Multiple Environments: Seamlessly switch between dev/staging/prod and have different secrets/envs for each.
+Provision Databases: Set up and connect to different databases as needed.
+Securely Manage Secrets: Keep API keys and sensitive info out of your codebase.
+Automate Deployments: Push changes to Vercel or other providers automatically.
