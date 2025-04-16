@@ -6,13 +6,13 @@
   "providers": {
     "deployment": {
       "type": "vercel",
-      "projectId": "<YOUR_VERCEL_PROJECT_ID>",
-      "teamId": "<YOUR_VERCEL_TEAM_ID>",
-      "token": "${{ secrets.VERCEL_TOKEN }}"
+      "projectId": "vercel_project_id_placeholder",
+      "teamId": "team_id_placeholder",
+      "token": "VERCEL_TOKEN_PLACEHOLDER"
     },
     "ai": {
       "type": "v0.dev",
-      "apiKey": "${{ secrets.V0_DEV_API_KEY }}"
+      "apiKey": "V0_DEV_API_KEY_PLACEHOLDER"
     },
     "databases": [
       {
@@ -45,12 +45,12 @@
     "multiEnvironment": true
   },
   "secrets": {
-    "VERCEL_TOKEN": "<YOUR_VERCEL_TOKEN>",
-    "V0_DEV_API_KEY": "<YOUR_V0_DEV_API_KEY>",
-    "DATABASE_URL": "<YOUR_POSTGRES_URL>",
-    "MYSQL_URL": "<YOUR_MYSQL_URL>",
-    "SQLITE_PATH": "<YOUR_SQLITE_FILE_PATH>",
-    "MONGODB_URI": "<YOUR_MONGODB_URI>"
+    "VERCEL_TOKEN": "VERCEL_TOKEN_PLACEHOLDER",
+    "V0_DEV_API_KEY": "V0_DEV_API_KEY_PLACEHOLDER",
+    "DATABASE_URL": "DATABASE_URL_PLACEHOLDER",
+    "MYSQL_URL": "MYSQL_URL_PLACEHOLDER",
+    "SQLITE_PATH": "SQLITE_PATH_PLACEHOLDER",
+    "MONGODB_URI": "MONGODB_URI_PLACEHOLDER"
   },
   "environments": {
     "development": {
@@ -59,7 +59,7 @@
         "DEBUG": "true"
       },
       "secrets": {
-        "V0_DEV_API_KEY": "<DEV_V0_API_KEY>"
+        "V0_DEV_API_KEY": "DEV_V0_API_KEY_PLACEHOLDER"
       }
     },
     "staging": {
@@ -67,7 +67,7 @@
         "DATABASE_URL": "postgres://stage_user:stage_pass@staging.host/stage_db"
       },
       "secrets": {
-        "V0_DEV_API_KEY": "<STAGING_V0_API_KEY>"
+        "V0_DEV_API_KEY": "STAGING_V0_API_KEY_PLACEHOLDER"
       }
     },
     "production": {
@@ -75,7 +75,7 @@
         "DATABASE_URL": "postgres://prod_user:prod_pass@prod.host/prod_db"
       },
       "secrets": {
-        "V0_DEV_API_KEY": "<PROD_V0_API_KEY>"
+        "V0_DEV_API_KEY": "PROD_V0_API_KEY_PLACEHOLDER"
       }
     }
   },
@@ -85,5 +85,25 @@
     "Provision and connect to the database using the provided connection string.",
     "Use secrets management for API keys and sensitive data.",
     "Override environment variables per environment as needed."
-  ]
+  ],
+  "mcpServers": {
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "address": "http://localhost:4001"
+    },
+    "figma": {
+      "command": "npx",
+      "args": [
+        "figma-mcp"
+      ],
+      "env": {
+        "FIGMA_API_KEY": "figma_api_key_placeholder"
+      },
+      "address": "http://localhost:4002"
+    }
+  }
 }
