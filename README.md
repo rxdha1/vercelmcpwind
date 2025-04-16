@@ -109,7 +109,40 @@ Click Refresh.
 
 Copy the conten in the vercelv0mcp.json with your own values for the placeholders to your mcp_config.json file usually localed in .condium/windsurf/mcp_config.json and is located in different folders in other IDE's.  The MCP configuration here works for all IDEs when placed in the right directory/file.  
 ```
+
 ```
+
+### Vercel and v0.dev MCP Configuration Notes:
+
+o fully utilize Vercel and v0.dev with your local repo in Windsurf, you need to ensure:
+
+Vercel and v0.dev are properly configured as providers in your config (which you already have in the providers section).
+You have valid API keys/tokens for both services in your secrets (and optionally per-environment).
+You do NOT need to run local MCP servers for Vercel and v0.dev—these are cloud services, not local processes like Puppeteer or Figma MCP. Instead, your MCP or Cascade agent will use the API keys to connect to their APIs.
+How it works in your config
+Vercel:
+The deployment provider uses your Vercel project and team IDs, plus your API token.
+When you trigger a deploy, the MCP or Cascade agent will use these credentials to deploy your code to Vercel.
+v0.dev:
+The ai provider uses your v0.dev API key.
+When you request code or UI generation, the MCP/Cascade agent will use this key to access v0.dev’s AI APIs.
+You do not need to add an address for these cloud services in mcpServers!
+Instead, just ensure your API keys and config are correct.
+
+What you need to do
+Replace the placeholders in your secrets section with your real API keys:
+```json
+"secrets": {
+  "VERCEL_TOKEN": "<your-vercel-api-token>",
+  "V0_DEV_API_KEY": "<your-v0-dev-api-key>",
+  ...
+}
+```
+You can get your Vercel API token from your Vercel dashboard.
+You can get your v0.dev API key from your v0.dev account.
+(Optional) Set environment-specific secrets if you want different keys for dev/staging/prod.
+Make sure your providers section has the correct IDs for your Vercel project and team.
+
 ### What the mcp_config.json file does for Cascade/Windsurf:
 
 1. Why You Don’t See an Address Field
