@@ -7,19 +7,20 @@ Enables v0.dev as a coding assistant for UI and code generation.
 Allows for database provisioning (e.g., PostgreSQL, MySQL, or Vercel’s own storage).
 Optionally, provides authentication and environment variable management.
 
-Vercel Integration: The deployment provider is set to Vercel. Fill in your actual projectId, teamId, and API token (these can be generated on your Vercel dashboard).
-v0.dev Integration: The AI provider is v0.dev. You’ll need an API key from your v0.dev account.
-Database Setup: The configuration provisions a PostgreSQL database using Vercel’s managed Postgres (or you can swap for MySQL, PlanetScale, etc.). The connection string is referenced via an environment variable.
-Features: Flags to enable auto-deployment, AI code generation, and database provisioning.
-Instructions: Human-readable steps for how the MCP ould orchestrate the workflow.
+**Vercel Integration**: The deployment provider is set to Vercel. Fill in your actual `projectId`, `teamId`, and API token (these can be generated on your Vercel dashboard).
 
-Support multiple database types: PostgreSQL, MySQL, SQLite, and MongoDB, each with their own provider and environment variable for connection.
-Add advanced configuration:
-Secrets management for sensitive values (API keys, DB passwords, etc.).
-Multi-environment support for development, staging, and production, allowing you to override environment variables and secrets per environment.
-Flags to enable these features in the features section.
-Provide clear placeholders and structure so you can easily fill in your actual credentials.
-This configuration enables flexible deployment, secure secrets handling, and easy switching between environments. 
+**v0.dev Integration**: The AI provider is v0.dev. You’ll need an API key from your v0.dev account.
+
+**Database Setup**: The configuration provisions a PostgreSQL database using Vercel’s managed Postgres (or you can swap for MySQL, PlanetScale, etc.). The connection string is referenced via an environment variable.
+
+**Features:**
+- Flags to enable auto-deployment, AI code generation, and database provisioning.
+- Support for multiple database types: PostgreSQL, MySQL, SQLite, and MongoDB, each with their own provider and environment variable for connection.
+- Secrets management for sensitive values (API keys, DB passwords, etc.).
+- Multi-environment support for development, staging, and production, allowing you to override environment variables and secrets per environment.
+- Provide clear placeholders and structure so you can easily fill in your actual credentials.
+
+This configuration enables flexible deployment, secure secrets handling, and easy switching between environments.
 
 ## MCP Configuration File
 le Overview
@@ -43,12 +44,19 @@ Provision Databases: Instantly connect to different DBs as needed.
 Automate Deployments: Push to Vercel or other providers.
 Securely Manage Secrets: Keep sensitive info out of your codebase.
 Next Steps
-Start your MCP servers on the assigned ports:
+**Start your MCP servers on the assigned ports:**
+
 For Puppeteer:
+```sh
 npx -y @modelcontextprotocol/server-puppeteer --port 4001
+```
 For Figma:
+```sh
 npx figma-mcp --port 4002
+```
+
 In Cascade/Windsurf, use the "Refresh" option in the MCP server UI. Your servers should now appear and be connectable.
+
 You can now orchestrate complex workflows, use AI code generation, automate deployments, and connect with external tools—all from this config!
 
 ## How to Use
@@ -57,60 +65,45 @@ need to install or run the MCP server separately.
 
 Here’s how you can proceed to get your local MCP server running:
 
-1. Check for a Global MCP CLI
-Many MCP servers (for Windsurf/Cascade) are installed globally via npm. The most common commands are:
+1. **Check for a Global MCP CLI**
+   Many MCP servers (for Windsurf/Cascade) are installed globally via npm. The most common commands are:
 
+   ```sh
+   npx mcp-server start
+   # or
+   npx windsurf-mcp start
+   # or, if installed globally
+   mcp-server start
+   # or
+   windsurf-mcp start
+   ```
+   If you get a “command not found” error, you’ll need to install it.
 
+2. **Install MCP Server (if not present)**
+   Try installing the MCP server globally:
 
-npx mcp-server start
-or
+   ```sh
+   npm install -g windsurf-mcp
+   # or
+   npm install -g mcp-server
+   ```
 
+3. **Start the MCP Server**
+   Once installed, run:
 
+   ```sh
+   windsurf-mcp start
+   # or
+   mcp-server start
+   ```
+   This should start your MCP server on a local port (commonly 3000 or 4000).
 
-npx windsurf-mcp start
-or, if installed globally:
+4. **Add MCP Server to Windsurf/Cascade**
+   - Go to Windsurf Settings → Cascade → Add Server.
+   - Enter the address, e.g. `http://localhost:3000`
+   - Click Refresh.
 
-
-
-mcp-server start
-or
-
-
-
-windsurf-mcp start
-If you get a “command not found” error, you’ll need to install it.
-
-2. Install MCP Server (if not present)
-Try installing the MCP server globally:
-
-
-
-npm install -g windsurf-mcp
-or
-
-
-
-npm install -g mcp-server
-
-3. Start the MCP Server
-Once installed, run:
-
-
-windsurf-mcp start
-or
-
-mcp-server start
-This ould start your MCP server on a local port (commonly 3000 or 4000).
-
-4. Add MCP Server to Windsurf/Cascade
-Go to Windsurf Settings → Cascade → Add Server.
-Enter the address, e.g. http://localhost:3000
-Click Refresh.
-
-Copy the conten in the vercelv0mcp.json with your own values for the placeholders to your mcp_config.json file usually localed in .condium/windsurf/mcp_config.json and is located in different folders in other IDE's.  The MCP configuration here works for all IDEs when placed in the right directory/file.  
-```
-
-```
+Copy the content in the `vercelv0mcp.json` with your own values for the placeholders to your `mcp_config.json` file (usually located in `.codeium/windsurf/mcp_config.json`; location may differ in other IDEs). The MCP configuration here works for all IDEs when placed in the right directory/file.
 
 ### Vercel and v0.dev MCP Configuration Notes:
 
@@ -130,18 +123,19 @@ You do not need to add an address for these cloud services in mcpServers!
 Instead, just ensure your API keys and config are correct.
 
 What you need to do
-Replace the placeholders in your secrets section with your real API keys:
+Replace the placeholders in your `secrets` section with your real API keys:
+
 ```json
 "secrets": {
   "VERCEL_TOKEN": "<your-vercel-api-token>",
   "V0_DEV_API_KEY": "<your-v0-dev-api-key>",
-  ...
+  // ...
 }
 ```
-You can get your Vercel API token from your Vercel dashboard.
-You can get your v0.dev API key from your v0.dev account.
-(Optional) Set environment-specific secrets if you want different keys for dev/staging/prod.
-Make sure your providers section has the correct IDs for your Vercel project and team.
+- You can get your Vercel API token from your Vercel dashboard.
+- You can get your v0.dev API key from your v0.dev account.
+- (Optional) Set environment-specific secrets if you want different keys for dev/staging/prod.
+- Make sure your providers section has the correct IDs for your Vercel project and team.
 
 ## v0.dev ai info and preview setups in MCP
 
@@ -176,54 +170,41 @@ Deploy to Vercel and use the Vercel preview URL.
 
 ### What the mcp_config.json file does for Cascade/Windsurf:
 
-1. Why You Don’t See an Address Field
-When you click "Add Custom Server" in Cascade settings, it takes you to this config file because Cascade expects you to define custom MCP servers here. However, the "mcpServers" section currently only specifies how to start servers (the command and args), not their addresses.
+1. **Why You Don’t See an Address Field**
+   When you click "Add Custom Server" in Cascade settings, it takes you to this config file because Cascade expects you to define custom MCP servers here. However, the "mcpServers" section currently only specifies how to start servers (the command and args), not their addresses.
 
-To make servers available to Cascade, you need to specify their addresses (URLs) so the IDE knows how to connect to them.
+   To make servers available to Cascade, you need to specify their addresses (URLs) so the IDE knows how to connect to them.
 
-2. How to Fix the File
-Add an "address" (or "url") field to each server under "mcpServers". For example:
-```json
-"mcpServers": {
-  "puppeteer": {
-    "command": "npx",
-    "args": [
-      "-y",
-      "@modelcontextprotocol/server-puppeteer"
-    ],
-    "address": "http://localhost:4001"
-  },
-  "figma": {
-    "command": "npx",
-    "args": [
-      "figma-mcp"
-    ],
-    "env": {
-      "FIGMA_API_KEY": "kQb1kSFNQtXkWnlQ7AVVpQH5BqVxwP"
-    },
-    "address": "http://localhost:4002"
-  }
-}
-```
+2. **How to Fix the File**
+   Add an `address` (or `url`) field to each server under `mcpServers`. For example:
 
-Replace the ports (4001, 4002) with the actual ports your MCP servers run on.
+   ```json
+   "mcpServers": {
+     "puppeteer": {
+       "command": "npx",
+       "args": [
+         "-y",
+         "@modelcontextprotocol/server-puppeteer"
+       ],
+       "address": "http://localhost:4001"
+     },
+     "figma": {
+       "command": "npx",
+       "args": [
+         "figma-mcp"
+       ],
+       "env": {
+         "FIGMA_API_KEY": "kQb1kSFNQtXkWnlQ7AVVpQH5BqVxwP"
+       },
+       "address": "http://localhost:4002"
+     }
+   }
+   ```
 
-3. What This File Does
-This config file is a central control panel for your Cascade/Windsurf + MCP setup. Here’s what you can do with it:
+* You can get your Vercel API token from your Vercel dashboard.
+* You can get your v0.dev API key from your v0.dev account.
+* (Optional) Set environment-specific secrets if you want different keys for dev/staging/prod.
+* Make sure your providers section has the correct IDs for your Vercel project and team.
 
-Project Metadata: Name, description, and documentation for your project.
-Providers: Set up deployment (Vercel), AI (v0.dev), and multiple database types (Postgres, MySQL, SQLite, MongoDB).
-Features: Toggle auto-deploy, AI code generation, database provisioning, secrets management, and multi-environment support.
-Secrets: Store API keys, DB URLs, and other sensitive data.
-Environments: Define different settings for development, staging, and production (env vars and secrets).
-Instructions: Human-readable steps for how Cascade/Windsurf should orchestrate your workflow.
-mcpServers: Define custom MCP servers (like Puppeteer, Figma) with:
-How to start them (command, args, env)
-Where to connect (address/url)
-4. What You Can Do With It
-Add/Remove Custom MCP Servers: Integrate tools like Puppeteer (for browser automation), Figma (for design), etc.
-Connect Cascade to Local/Remote MCPs: By specifying the address, Cascade can communicate with these servers.
-Manage Multiple Environments: Seamlessly switch between dev/staging/prod and have different secrets/envs for each.
-Provision Databases: Set up and connect to different databases as needed.
-Securely Manage Secrets: Keep API keys and sensitive info out of your codebase.
-Automate Deployments: Push changes to Vercel or other providers automatically.
+### Automate Deployments
+Push changes to Vercel or other providers automatically.
