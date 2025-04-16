@@ -1,0 +1,89 @@
+{
+  "project": {
+    "name": "vibe-coding-repo",
+    "description": "Repo for AI-powered UI/code generation with v0.dev, deployed on Vercel, with database support"
+  },
+  "providers": {
+    "deployment": {
+      "type": "vercel",
+      "projectId": "<YOUR_VERCEL_PROJECT_ID>",
+      "teamId": "<YOUR_VERCEL_TEAM_ID>",
+      "token": "${{ secrets.VERCEL_TOKEN }}"
+    },
+    "ai": {
+      "type": "v0.dev",
+      "apiKey": "${{ secrets.V0_DEV_API_KEY }}"
+    },
+    "databases": [
+      {
+        "type": "postgresql",
+        "provider": "vercel_postgres",
+        "connectionStringEnv": "DATABASE_URL"
+      },
+      {
+        "type": "mysql",
+        "provider": "planetscale",
+        "connectionStringEnv": "MYSQL_URL"
+      },
+      {
+        "type": "sqlite",
+        "provider": "local",
+        "filePathEnv": "SQLITE_PATH"
+      },
+      {
+        "type": "mongodb",
+        "provider": "mongodb_atlas",
+        "connectionStringEnv": "MONGODB_URI"
+      }
+    ]
+  },
+  "features": {
+    "autoDeploy": true,
+    "aiCodeGeneration": true,
+    "databaseProvisioning": true,
+    "secretsManagement": true,
+    "multiEnvironment": true
+  },
+  "secrets": {
+    "VERCEL_TOKEN": "<YOUR_VERCEL_TOKEN>",
+    "V0_DEV_API_KEY": "<YOUR_V0_DEV_API_KEY>",
+    "DATABASE_URL": "<YOUR_POSTGRES_URL>",
+    "MYSQL_URL": "<YOUR_MYSQL_URL>",
+    "SQLITE_PATH": "<YOUR_SQLITE_FILE_PATH>",
+    "MONGODB_URI": "<YOUR_MONGODB_URI>"
+  },
+  "environments": {
+    "development": {
+      "env": {
+        "DATABASE_URL": "postgres://dev_user:dev_pass@localhost/dev_db",
+        "DEBUG": "true"
+      },
+      "secrets": {
+        "V0_DEV_API_KEY": "<DEV_V0_API_KEY>"
+      }
+    },
+    "staging": {
+      "env": {
+        "DATABASE_URL": "postgres://stage_user:stage_pass@staging.host/stage_db"
+      },
+      "secrets": {
+        "V0_DEV_API_KEY": "<STAGING_V0_API_KEY>"
+      }
+    },
+    "production": {
+      "env": {
+        "DATABASE_URL": "postgres://prod_user:prod_pass@prod.host/prod_db"
+      },
+      "secrets": {
+        "V0_DEV_API_KEY": "<PROD_V0_API_KEY>"
+      }
+    }
+  },
+  "instructions": [
+    "Use v0.dev for UI and code suggestions.",
+    "Deploy all changes to Vercel automatically.",
+    "Provision and connect to the database using the provided connection string.",
+    "Use secrets management for API keys and sensitive data.",
+    "Override environment variables per environment as needed."
+  ]
+}
