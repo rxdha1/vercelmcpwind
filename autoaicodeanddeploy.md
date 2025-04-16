@@ -1,3 +1,6 @@
+run the script:
+// Usage: node scripts/codegen_and_deploy.js "<your prompt>"
+
 .env file in the project root:
 
 env
