@@ -143,6 +143,37 @@ You can get your v0.dev API key from your v0.dev account.
 (Optional) Set environment-specific secrets if you want different keys for dev/staging/prod.
 Make sure your providers section has the correct IDs for your Vercel project and team.
 
+## v0.dev ai info and preview setups in MCP
+
+hen using v0.dev as an MCP (Model Context Protocol) provider, the typical workflow for seeing changes in preview mode on their AI IDE view is as follows:
+
+How v0.dev Preview Works
+Edit or Generate Code/UI with v0.dev
+You use v0.dev (via their web IDE or via integration in Windsurf/Cascade) to generate or edit code/components.
+Preview Mode in v0.dev
+In the v0.dev web interface, there is a “Preview” button or panel.
+When you make changes (either by AI prompt or manual edit), you can click “Preview” to see a live rendering of the UI/component.
+This preview is rendered in a sandboxed environment using the code/context you see in the editor.
+Integration with Local Repo (Optional)
+If you have connected your local repo to v0.dev (using their GitHub integration or file sync), changes made in v0.dev can be pushed to your repo, and vice versa.
+If you are using Windsurf/Cascade with v0.dev as an AI provider, you can generate code locally and then push to your repo or deploy to Vercel for a full-stack preview.
+Live Preview in Windsurf/Cascade
+If you want to view your changes live locally (e.g., with Vite or Next.js), run your local dev server (e.g., npm run dev) and open the local preview (e.g., http://localhost:5173).
+v0.dev’s preview is isolated to their UI, but you can always copy code from v0.dev to your local repo and see it live in your own browser.
+Key Points
+v0.dev’s “Preview” is for the code/context in their web IDE.
+To see a live preview of your full app, run your local dev server and open the browser at your local port (e.g., 5173).
+If you want to sync changes between v0.dev and your local repo, use their GitHub/file sync integration.
+Practical Workflow
+In v0.dev:
+Generate/edit code → Click “Preview” to see the result in their AI IDE.
+In your local repo (Windsurf):
+Pull or copy the generated code into your repo.
+Run your local dev server (npm run dev or similar).
+Open the local preview URL (e.g., http://localhost:5173).
+For full-stack preview:
+Deploy to Vercel and use the Vercel preview URL.
+
 ### What the mcp_config.json file does for Cascade/Windsurf:
 
 1. Why You Don’t See an Address Field
