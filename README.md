@@ -1,13 +1,13 @@
 # MCP for Vercel and v0.dev with advanced capabilites.
 
-## About this MCP for Vercel and v0
+## About this MCP for Vercel and v0.dev
 
 Specifies Vercel as the deployment provider.
 Enables v0.dev as a coding assistant for UI and code generation.
 Allows for database provisioning (e.g., PostgreSQL, MySQL, or Vercel’s own storage).
 Optionally, provides authentication and environment variable management.
 
-Vercel Integration: The deployment provider is set to Vercel. Fill in your actual projectId, teamId, and API token (these can be generated on your Vercel daboard).
+Vercel Integration: The deployment provider is set to Vercel. Fill in your actual projectId, teamId, and API token (these can be generated on your Vercel dashboard).
 v0.dev Integration: The AI provider is v0.dev. You’ll need an API key from your v0.dev account.
 Database Setup: The configuration provisions a PostgreSQL database using Vercel’s managed Postgres (or you can swap for MySQL, PlanetScale, etc.). The connection string is referenced via an environment variable.
 Features: Flags to enable auto-deployment, AI code generation, and database provisioning.
@@ -21,6 +21,35 @@ Flags to enable these features in the features section.
 Provide clear placeholders and structure so you can easily fill in your actual credentials.
 This configuration enables flexible deployment, secure secrets handling, and easy switching between environments. 
 
+## MCP Configuration File
+le Overview
+project: Describes your project.
+providers: Sets up deployment (Vercel), AI (v0.dev), and multiple database types (Postgres, MySQL, SQLite, MongoDB).
+features: Enables advanced workflow features (auto-deploy, AI code generation, secrets management, multi-environment support).
+secrets: Stores sensitive info (API keys, DB URLs).
+environments: Lets you define dev, staging, and production settings and secrets.
+instructions: Human-readable workflow steps.
+mcpServers:
+Defines custom MCP servers (like Puppeteer and Figma).
+Specifies how to start them and their connection addresses:
+Puppeteer MCP: http://localhost:4001
+Figma MCP: http://localhost:4002
+These ports are available and do not conflict with your local web development on port 5173.
+What you can do with this file
+Add/Remove Custom MCP Servers: Integrate tools for browser automation, design, etc.
+Connect Cascade to Local MCPs: Cascade will use the address fields to connect to your running servers.
+Switch Environments: Seamlessly move between dev/staging/prod with different secrets and DBs.
+Provision Databases: Instantly connect to different DBs as needed.
+Automate Deployments: Push to Vercel or other providers.
+Securely Manage Secrets: Keep sensitive info out of your codebase.
+Next Steps
+Start your MCP servers on the assigned ports:
+For Puppeteer:
+npx -y @modelcontextprotocol/server-puppeteer --port 4001
+For Figma:
+npx figma-mcp --port 4002
+In Cascade/Windsurf, use the "Refresh" option in the MCP server UI. Your servers should now appear and be connectable.
+You can now orchestrate complex workflows, use AI code generation, automate deployments, and connect with external tools—all from this config!
 
 ## How to Use
 
