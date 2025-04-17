@@ -8,7 +8,7 @@ const path = require('path');
 // Load secrets from environment or fallback to .env
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
-const V0_DEV_API_KEY = process.env.V0_DEV_API_KEY;
+const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_DEPLOY_HOOK = process.env.VERCEL_DEPLOY_HOOK;
 const COMPONENT_OUTPUT_PATH = process.env.COMPONENT_OUTPUT_PATH || path.resolve(__dirname, '../src/components/GeneratedComponent.jsx');
 
@@ -22,7 +22,7 @@ async function generateCode() {
   const res = await fetch('https://api.v0.dev/generate', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${V0_DEV_API_KEY}`,
+      'Authorization': `Bearer ${VERCEL_TOKEN}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ prompt })
