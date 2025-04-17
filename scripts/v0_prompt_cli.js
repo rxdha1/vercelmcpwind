@@ -10,20 +10,20 @@ const fetch = require('node-fetch');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 // ---- REAL MCP/V0 INTEGRATION ---- //
-const V0_DEV_API_KEY = process.env.V0_DEV_API_KEY;
+const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const VERCEL_DEPLOY_HOOK = process.env.VERCEL_DEPLOY_HOOK;
 const COMPONENT_OUTPUT_PATH = process.env.COMPONENT_OUTPUT_PATH || path.resolve(__dirname, '../src/components/GeneratedComponent.jsx');
 const VERCEL_PREVIEW_URL = process.env.VERCEL_PREVIEW_URL || 'https://your-vercel-preview-url.vercel.app';
 
 async function sendPromptToV0(prompt) {
     if (!prompt) throw new Error('Prompt is required');
-    if (!V0_DEV_API_KEY) throw new Error('V0_DEV_API_KEY missing in .env');
+    if (!VERCEL_TOKEN) throw new Error('VERCEL_TOKEN missing in .env');
     console.log(`Sending prompt to v0: "${prompt}" ...`);
     // 1. Send prompt to v0.dev API
     const res = await fetch('https://api.v0.dev/generate', {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${V0_DEV_API_KEY}`,
+            'Authorization': `Bearer ${VERCEL_TOKEN}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ prompt })

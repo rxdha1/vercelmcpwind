@@ -1,6 +1,6 @@
 {
   "project": {
-    "name": "vibe-coding-repo",
+    "name": "packz",
     "description": "Repo for AI-powered UI/code generation with v0.dev, deployed on Vercel, with database support"
   },
   "providers": {
@@ -11,19 +11,13 @@
       "token": "VERCEL_TOKEN_PLACEHOLDER"
     },
     "ai": {
-      "type": "v0.dev",
-      "apiKey": "V0_DEV_API_KEY_PLACEHOLDER"
+      "type": "v0.dev"
     },
     "databases": [
       {
         "type": "postgresql",
         "provider": "vercel_postgres",
         "connectionStringEnv": "DATABASE_URL"
-      },
-      {
-        "type": "mysql",
-        "provider": "planetscale",
-        "connectionStringEnv": "MYSQL_URL"
       },
       {
         "type": "sqlite",
@@ -46,36 +40,47 @@
   },
   "secrets": {
     "VERCEL_TOKEN": "VERCEL_TOKEN_PLACEHOLDER",
-    "V0_DEV_API_KEY": "V0_DEV_API_KEY_PLACEHOLDER",
+    "VERCEL_DEPLOY_HOOK": "VERCEL_DEPLOY_HOOK_PLACEHOLDER",
+    "COMPONENT_OUTPUT_PATH": "COMPONENT_OUTPUT_PATH_PLACEHOLDER",
     "DATABASE_URL": "DATABASE_URL_PLACEHOLDER",
-    "MYSQL_URL": "MYSQL_URL_PLACEHOLDER",
-    "SQLITE_PATH": "SQLITE_PATH_PLACEHOLDER",
-    "MONGODB_URI": "MONGODB_URI_PLACEHOLDER"
+    "DATABASE_POSTGRES_URL": "DATABASE_POSTGRES_URL_PLACEHOLDER",
+    "DATABASE_POSTGRES_PRISMA_URL": "DATABASE_POSTGRES_PRISMA_URL_PLACEHOLDER",
+    "DATABASE_SUPABASE_URL": "DATABASE_SUPABASE_URL_PLACEHOLDER",
+    "DATABASE_NEXT_PUBLIC_SUPABASE_URL": "DATABASE_NEXT_PUBLIC_SUPABASE_URL_PLACEHOLDER",
+    "DATABASE_POSTGRES_URL_NON_POOLING": "DATABASE_POSTGRES_URL_NON_POOLING_PLACEHOLDER",
+    "DATABASE_SUPABASE_JWT_SECRET": "DATABASE_SUPABASE_JWT_SECRET_PLACEHOLDER",
+    "DATABASE_POSTGRES_USER": "DATABASE_POSTGRES_USER_PLACEHOLDER",
+    "DATABASE_NEXT_PUBLIC_SUPABASE_ANON_KEY": "DATABASE_NEXT_PUBLIC_SUPABASE_ANON_KEY_PLACEHOLDER",
+    "DATABASE_POSTGRES_PASSWORD": "DATABASE_POSTGRES_PASSWORD_PLACEHOLDER",
+    "DATABASE_POSTGRES_DATABASE": "DATABASE_POSTGRES_DATABASE_PLACEHOLDER",
+    "DATABASE_SUPABASE_SERVICE_ROLE_KEY": "DATABASE_SUPABASE_SERVICE_ROLE_KEY_PLACEHOLDER",
+    "DATABASE_POSTGRES_HOST": "DATABASE_POSTGRES_HOST_PLACEHOLDER",
+    "SQLITE_PATH": "SQLITE_PATH_PLACEHOLDER"
   },
   "environments": {
     "development": {
       "env": {
-        "DATABASE_URL": "postgres://dev_user:dev_pass@localhost/dev_db",
+        "DATABASE_URL": "DATABASE_URL_DEV_PLACEHOLDER",
         "DEBUG": "true"
       },
       "secrets": {
-        "V0_DEV_API_KEY": "DEV_V0_API_KEY_PLACEHOLDER"
+        "VERCEL_TOKEN": "DEV_VERCEL_TOKEN_PLACEHOLDER"
       }
     },
     "staging": {
       "env": {
-        "DATABASE_URL": "postgres://stage_user:stage_pass@staging.host/stage_db"
+        "DATABASE_URL": "DATABASE_URL_STAGING_PLACEHOLDER"
       },
       "secrets": {
-        "V0_DEV_API_KEY": "STAGING_V0_API_KEY_PLACEHOLDER"
+        "VERCEL_TOKEN": "STAGING_VERCEL_TOKEN_PLACEHOLDER"
       }
     },
     "production": {
       "env": {
-        "DATABASE_URL": "postgres://prod_user:prod_pass@prod.host/prod_db"
+        "DATABASE_URL": "DATABASE_URL_PROD_PLACEHOLDER"
       },
       "secrets": {
-        "V0_DEV_API_KEY": "PROD_V0_API_KEY_PLACEHOLDER"
+        "VERCEL_TOKEN": "PROD_VERCEL_TOKEN_PLACEHOLDER"
       }
     }
   },
