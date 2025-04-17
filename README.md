@@ -208,3 +208,31 @@ Deploy to Vercel and use the Vercel preview URL.
 
 ### Automate Deployments
 Push changes to Vercel or other providers automatically.
+
+### F.A.Q.
+
+#### Question: 
+so If i leave placeholder values in the mcp config file but ensure that the real environment variable are present in the .env everything will work, is that right?
+
+#### Answer:
+MCP Config File (mcp3.json):
+Can contain placeholder values for sensitive information
+Defines which environment variables your application needs
+Specifies the structure and relationships between services
+Environment Variables (.env):
+Contains the actual values that will be used at runtime
+Overrides any placeholder values from the MCP config
+Keeps sensitive information out of version control
+When your application runs:
+
+The system first loads the MCP configuration
+Then it loads the actual values from your .env file
+The real values from .env replace any placeholders in the configuration
+This approach has several benefits:
+
+Security: Sensitive data stays in your local .env file (which should never be committed to version control)
+Portability: Other developers can use the same MCP config but with their own .env values
+Flexibility: You can have different .env files for different environments (development, staging, production)
+For example, your MCP config might have "V0_DEV_API_KEY": "V0_DEV_API_KEY_PLACEHOLDER", but as long as your .env file has V0_DEV_API_KEY=your_actual_api_key, the system will use your actual API key when needed.
+
+This is a standard practice in modern development and follows the 12-factor app methodology for configuration management.
